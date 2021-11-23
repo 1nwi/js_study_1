@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="app.js"></script>
+    <script>
+        const $box = document.querySelector('.box');
+        $box.onclick = e => {
+            $box.style.background = 'blue';
+            $box.style.width = '400px';
+            alert('박스가 커진다!');
+
+        };
+    </script>
+</body>
+</html>
