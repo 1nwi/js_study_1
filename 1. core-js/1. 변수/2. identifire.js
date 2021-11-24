@@ -30,3 +30,17 @@ var userphonenumber = '01099993333';
 var user_phone_number = 1; // snake case (파이썬, SQL 선호)
 var userPhoneNumber = 1;   // camel case (자바, 자바스크립트 선호)
 var UserPhoneNumber = 1;   // pascal case (C계열)
+
+// 5. 키워드(예약어)는 이름으로 쓰지 말것!
+// var var = 1;
+// var if = 1;
+// var for =1;
+// var break =1;
+
+// 식별자 이름은 구체적이고 명확하고 일관성있게 지을 것!
+var a = '홍길동';   // userName
+var zzzz= 'abc1234@hamial.com';  // userEmail
+var fzd = '남자'; // userGender
+
+
+var cabbage = 50000;
