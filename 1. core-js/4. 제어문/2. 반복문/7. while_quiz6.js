@@ -13,4 +13,13 @@ while (n <= x) {
     n++;
 }
 
+/*
+while (n <= x) {
+    star += '*';
+    if (n % 5 ===0) {
+        star += '\n';
+    }
+    n++;
+}
+*/
 alert(star);

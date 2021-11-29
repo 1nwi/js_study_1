@@ -1,7 +1,7 @@
 
 
-var num =  5  //+prompt('양의 정수: ');
-var x = 1
+var num = +prompt('양의 정수: '); //+prompt('양의 정수: ');
+var x = 1;
 var p = '+';
 var m = '-';
 var calcul = '';
@@ -15,4 +15,4 @@ while (x <= num) {
     }
     x++;
 }
-console.log(calcul);
+alert(calcul);

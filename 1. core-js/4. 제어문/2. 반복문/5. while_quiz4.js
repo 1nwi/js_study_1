@@ -4,6 +4,13 @@ var x = 1;
 var total = '';
 
 while (x <= num) {
+    total += (x % 10);
+    x++;
+}
+alert(total);
+
+/*
+while (x <= num) {
     if (x % 10 === 1) {
         total += '1';
     } else if (x % 10 === 2) {
@@ -28,6 +35,6 @@ while (x <= num) {
     x++;
 }
 alert(total);
-
+*/
 
 
