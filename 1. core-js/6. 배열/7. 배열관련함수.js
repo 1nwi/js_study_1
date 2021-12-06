@@ -59,7 +59,14 @@ console.log('=========================================');
 var result = foods.includes('닭꼬치');
 console.log(result);
 
+console.log('================================');
 
+var file_name = 'D:/ise/image/gold_fish_img.png';
+
+// 이미지확장자 : jpg, gif, png, svg
+// indexOf(): 특정 요소의 인덱스를 반환
+// substring(): 배열의 slice와 같은 효과
+console.log(file_name.substring(file_name.indexOf('.') + 1));
 
 
 
