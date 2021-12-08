@@ -14,7 +14,8 @@
 // 함수 정의부
 function calcBMI(height, weight) {
 
-    var bmi = (weight / (height**10-2) * (height**10-2));
+    var bmi = (weight / ((height * 10 ** -2) * (height* 10 ** -2)));
+    console.log(typeof bmi);
     
     if (bmi >= 25.0) {
         console.log("당신은 과체중입니다.");
@@ -23,11 +24,10 @@ function calcBMI(height, weight) {
     } else {
         console.log("당신은 정상체중입니다.");
     }
-
+    bmi = Math.floor(bmi);
     return bmi;
 
 }
-
 
 // 함수 출력부
 var h = 178.4, w = 78.2;
