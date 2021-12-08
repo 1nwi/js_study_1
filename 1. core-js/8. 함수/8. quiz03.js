@@ -15,7 +15,6 @@
 function calcBMI(height, weight) {
 
     var bmi = (weight / ((height * 10 ** -2) * (height* 10 ** -2)));
-    console.log(typeof bmi);
     
     if (bmi >= 25.0) {
         console.log("당신은 과체중입니다.");
