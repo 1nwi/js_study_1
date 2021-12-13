@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- #wrap>ul#list1>li{리스트$}*7 -->
+    <div id="wrap">
+        <ul id="list1">
+            <li class="aList">리스트1</li>
+            <li class="aList">리스트2</li>
+            <li class="bList">리스트3</li>
+            <li class="bList">리스트4</li>
+            <li class="bList">리스트5</li>
+            <li class="bList">리스트6</li>
+            <li class="bList">리스트7</li>
+        </ul>
+    </div>
+
+    <script>
+        
+        //1. id="list1"인 요소에 <li> 요소중  홀수번째 요소만 선택후 배경색상 yellow 적용        
+        const $yellow = document.querySelectorAll('#wrap > #list1 > li:nth-child(2n+1)');
+        console.log($yellow);
+        for (let i = 0; i < $yellow.length; i++) {
+            $yellow[i].style.backgroundColor = 'yellow';
+        }
+
+        //2. id="list1"인 요소에 <li> 요소중   짝수번째 요소만 선택후 배경색상 gray 적용        
+        const $gray = document.querySelectorAll('#wrap > #list1 > li:nth-child(2n)');
+        console.log($gray);
+        for (let i = 0; i < $gray.length; i++) {
+            $gray[i].style.backgroundColor = 'gray';
+        }
+
+        //3. id="list1"인 요소에 <li> 요소중   첫번째 <li>요소만 선택후 폰트색상 red 적용        
+        const $li1 = document.querySelector('#wrap > #list1 > li:first-child');
+        console.log($li1);
+        $li1.style.color = 'red';
+        
+        //4. id="list1"인 요소에 <li> 요소중  마지막번째 <li>요소만 선택후 폰트색상 green 적용        
+        const $li7 = document.querySelector('#wrap > #list1 > li:last-child');
+        console.log($li7);
+        $li7.style.color = 'green';
+
+        //5. id="list1"인 요소에 <li> 요소중  두번째 <li>요소만 선택후 font-style: italic 적용             
+        const $li2 = document.querySelector('#wrap > #list1 > li:nth-child(2)');
+        console.log($li2);
+        $li2.style.fontStyle = 'italic';
+
+        //6. id="list1"인 요소에 <li> 요소중  3번째 이전 요소만 선택후 
+        //   border: 2px dotted aqua 적용 (1, 2번째만 선택)
+        const $changeBorder = document.querySelectorAll('#wrap > #list1 > li.aList');
+        console.log($changeBorder);
+        for (let i = 0; i < $changeBorder.length; i++) {
+            $changeBorder[i].style.border = '2px dotted aqua';        
+        }
+        //7. id="list1"인 요소에 <li> 요소중  3번째 이후요소만 선택후
+        //   border 2px dashed violet 적용 (3번째부터 끝까지 선택)
+        const $changeBorder2 = document.querySelectorAll('#wrap > #list1 > li.bList');
+        console.log($changeBorder2);
+        for (let i = 0; i < $changeBorder2; i++) {
+            $changeBorder2[i].style.border = '2px dotted violet';   
+        }
+
+
+    </script>
+
+
+</body>
+</html>

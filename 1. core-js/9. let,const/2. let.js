@@ -16,7 +16,7 @@ console.log(`global-y : ${y}`);
 
 
 // 3. 변수 호이스팅을 일으키지 않음
-z = 100; //  # ReferenceError
-console.log(z);
+//z = 100; //  # ReferenceError
+//console.log(z);
 
 let z;
