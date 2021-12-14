@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li class="apple">사과</li>
+        <li class="banana">바나나</li>
+        <li class="grape">포도</li>
+    </ul>
+
+    <div class="ttt">
+        <p>abcd</p>
+    </div>
+
+    <script>
+
+        // 노드 탐색의 기점이 되는 요소 취득
+        // const $fruits = document.getElementById('fruits');
+        const $fruits = document.querySelector('#fruits');
+        console.log($fruits);   // ul 을 잘 가지고 왔는지 확인용
+
+        // 기준 노드의 모든 자식노드를 탐색, 단 텍스트 노드 포함.
+        // const $childs = $fruits.childNodes;     << 결론 : 쓰지마.
+
+        // 기준 노드의 모든 자식노드를 탐색, 단 텍스트 노드 제외.
+        const $childs = $fruits.children;    //  결론 : childNodes 대신 써라
+        
+        console.log($childs);
+
+        // const $first = $childs[0];
+        // const $last = $childs[$childs.length - 1];
+
+        const $first = $fruits.firstElementChild;
+        const $last = $fruits.lastElementChild;
+        console.log($first);
+        console.log($last);
+
+        console.log('======================================');
+
+        const $div = document.querySelector('.ttt');
+        // console.log($div.hasChildNodes());    << 텍스트 노드 포함  결론 : 쓰지마.
+        console.log(!!$div.children.length);    // 자식이 없으면 0   결론 : 0 은 falsy 이므로 논리로바꿔서 자식 유무 확인가능
+
+    </script>
+
+
+</body>
+</html>
