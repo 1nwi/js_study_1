@@ -13,11 +13,11 @@
         <ul id="list1">
             <li class="aList">리스트1</li>
             <li class="aList">리스트2</li>
-            <li class="bList">리스트3</li>
-            <li class="bList">리스트4</li>
-            <li class="bList">리스트5</li>
-            <li class="bList">리스트6</li>
-            <li class="bList">리스트7</li>
+            <li>리스트3</li>
+            <li>리스트4</li>
+            <li>리스트5</li>
+            <li>리스트6</li>
+            <li>리스트7</li>
         </ul>
     </div>
 
@@ -61,10 +61,10 @@
         }
         //7. id="list1"인 요소에 <li> 요소중  3번째 이후요소만 선택후
         //   border 2px dashed violet 적용 (3번째부터 끝까지 선택)
-        const $changeBorder2 = document.querySelectorAll('#wrap > #list1 > li.bList');
+        const $changeBorder2 = document.querySelectorAll('#wrap > #list1 > li:not(.aList)');
         console.log($changeBorder2);
-        for (let i = 0; i < $changeBorder2; i++) {
-            $changeBorder2[i].style.border = '2px dotted violet';   
+        for (let i = 0; i < $changeBorder2.length; i++) {
+            $changeBorder2[i].style.border = '2px dashed violet';   
         }
 
 
