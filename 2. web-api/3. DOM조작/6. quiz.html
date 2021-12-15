@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="theTitle">html 조작</h1>
+    <ul id="list">
+        <li class="obj1">list_2</li>
+        <li>list_3</li>
+        <li>list_4</li>
+        <li>list_5</li>
+    </ul>
+    <script>
+        //1. class="theTitle"인 요소의 자식요소를 innerHTML을 사용하여
+        //   <a href="#">요소 객체 조작</a>로 교체하세요.
+        const $theTitle = document.querySelector('.theTitle');
+        $theTitle.innerHTML = '<a href="#">요소 객체 조작</a>';
+        //<solution> document.querySelector('.theTitle').innerHTML = '<a href="#">요소 객체 조작</a>';
+
+        //2. class="obj1"인 요소의 텍스트를 "리스트_2"로 변경하세요.
+        const $obj1 = document.querySelector('.obj1');
+        $obj1.innerHTML = '리스트2';
+        //<solution> document.querySelector('.obj1').textContent = '리스트2';
+        
+            //### 여기부터는 innerHTML 사용 금지.
+
+        //3. id="list"인 요소의 마지막 위치에 새요소 "<li>list_6</li>"를 추가하세요.     
+        const $ul = document.querySelector('#list');
+        const $newLi = document.createElement('li');
+        $newLi.textContent = 'list_6';
+        $ul.appendChild($newLi);
+
+        //4. id="list"인 요소의 첫 위치에 새요소 "<li>list_1</li>"를 추가하세요.
+        const $newLi2 = document.createElement('li');
+        $newLi2.textContent = 'list_1';
+        $ul.insertBefore($newLi2, document.querySelector('#list li:first-child'));
+        //<solution> $ul.insertBefore($newLi2, $ul.firstElementChild);
+
+        //5. class="obj1"인 요소를 깊은 복제후에 id="list"인요소 마지막 위치에 추가
+        const $deep = $obj1.cloneNode(true);
+        $ul.appendChild($deep);
+
+        //6. id="list"인 요소의 하위 <li>요소중 첫번째 요소 삭제
+        $ul.removeChild($ul.firstElementChild);
+    
+        //7. ul의 자식 노드를 전부 삭제하세요.
+        /*
+        const $li = document.querySelectorAll('#list > li')
+        console.log($li);
+        for (const remove of $li) {
+            $ul.removeChild(remove)
+        }
+        */
+        // 위에 방식은 NodeList 타입으로 들어옵니다 HTMLColection 과 같은 유사배열이지만 
+        // Live Dom은 아닙니다. 하지만...
+        // 배열함수는 배열일떄 사용하는것이 가장 안전하기 떄문에 유사배열을 리얼배열로 변환해서
+        // 사용합시다.
+
+        const $children = [...$ul.children];
+        for (let i = 0; i < $children.length; i++) {
+            $ul.removeChild($children[i]);
+        }
+
+
+    </script>
+</body>
+
+</html>
