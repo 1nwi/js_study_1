@@ -45,9 +45,14 @@
         document.querySelector('body').onclick = e => alert('body');
         document.querySelector('.root').onclick = e => alert('root');
         document.querySelector('.parent').onclick = e => alert('parent');
-        document.querySelector('.child').onclick = e => alert('child');
-        document.querySelector('.target').onclick = e => alert('target');
-
+        document.querySelector('.child').onclick = e => {
+            e.stopPropagation();
+            alert('child');
+        };
+        document.querySelector('.target').onclick = e => {
+            e.stopPropagation(); // 이벤트 전파를 중단시킴 
+            alert('target');
+        };
     </script>
     
 </body>
