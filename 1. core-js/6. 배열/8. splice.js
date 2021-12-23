@@ -4,7 +4,7 @@ var pets = ['멍멍이', '야옹이', '짹짹이', '고라니'];
 console.log(pets);
 
 
-pets.splice(1, 2);
+pets.splice(1, 1);  // 1번 인덱스부터 1개 지우세요
 console.log(pets);
 
 pets.splice(0, 1, '어흥이');
