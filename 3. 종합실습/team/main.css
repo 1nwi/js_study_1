@@ -1,0 +1,61 @@
+.reset {
+    all: unset;
+
+    width: 100px;
+    height: 36px;
+
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    cursor: pointer;
+    padding: 0 6px;
+    margin: 0 10px;
+
+    transition: all .2s ease;
+}
+
+.reset:hover {
+    background: #dec6eb;
+    border: 1px solid #777;
+}
+
+.rock, .scissors, .paper {
+    width: 80px;
+    height: 80px;
+    background: #aaa;
+
+    border: 1px solid #444;
+    border-radius: 40px;
+
+    margin-right: 10px;
+    cursor: pointer;
+
+    transition: all .1s ease;
+}
+
+.rock:hover, .scissors:hover, .paper:hover{
+    background-size: 56px 56px;
+}
+
+.rock {
+    background: url("image/rock.png") center no-repeat;
+    background-size: 50px 50px;
+}
+
+.scissors {
+    background: url("image/scissors.png") center no-repeat;
+    background-size: 50px 50px;
+}
+
+.paper {
+    background: url("image/paper.png") center no-repeat;
+    background-size: 50px 50px;
+}
