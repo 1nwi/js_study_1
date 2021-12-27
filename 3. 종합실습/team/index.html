@@ -18,25 +18,25 @@
 </head>
 <body>
     <div class="wrapper">
-        <section class="main">
+        <section class="main clearfix">
             <h1 id="rock-paper-scissors">가위! 바위! 보!</h1>
-            <div class="score-reset-board">
+            <div class="score-reset-board clearfix">
                 <div class="score">
-                    <div class="player-computer">플레이어 vs 컴퓨터</div>
+                    <div class="player-computer">Player vs Computer</div>
                     <div class="score-board"><em id="player-score">0</em> : <em id="computer-score">0</em></div>
                 </div>
                 <div class="reset">RESET</div>
             </div>
-            <div class="game-result">
+            <div class="game-result clearfix">
                 <div class="player-game">
-
+                    <p>Player</p>
                 </div>
                 <div class="computer-game">
-
+                    <p>computer</p>
                 </div>
             </div>
 
-            <div class="choice">
+            <div class="choice clearfix">
                 <div id="rock">
                     <!-- <img src="img/rock.png" /> -->
                 </div>
@@ -47,6 +47,10 @@
                     <!-- <img src="img/scissors.png" /> -->
                 </div>
             </div>
+
+
+            <div class="winbox">Player Win</div>
+            <div class="losebox">Player Lose</div>
 
         </section>
 

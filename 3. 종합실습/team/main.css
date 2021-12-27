@@ -1,17 +1,24 @@
-
 a {
     color: inherit;
     text-decoration: none;
 }
-input, button {
+
+input,
+button {
     background: none;
     outline: none;
     border: none;
 }
 
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
 .wrapper {
     background: hotpink;
-    padding-top: 64px;
+    padding-top: 100px;
     height: 100vh;
 }
 
@@ -20,7 +27,7 @@ section.main {
     border-radius: 5px;
     margin: 0 auto;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -43,13 +50,13 @@ section.main .score-reset-board {
     font-size: 1.1em;
     height: 60;
     padding: 10px;
-    position: absolute;
+
     width: 680px;
     border-bottom: 1px solid #ddd;
 }
 
 section.main .score-reset-board .score {
-    width: 200px;
+    width: 250px;
     height: 50px;
     padding: 0 6px;
     margin: 0 10px;
@@ -61,25 +68,26 @@ section.main .score-reset-board .score {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
-    position: relative;
-    top: 20px;
+    flex-direction: column;
+    float: left;
 }
 
 section.main .score-reset-board .score .player-computer {
-
+    position: relative;
 }
 
 section.main .score-reset-board .score .score-board {
+    position: relative;
+    left: -13px;
 
 }
 
 section.main .score-reset-board .reset {
     /* all: unset; */
-    
+
     width: 100px;
     height: 36px;
-    
+
     background: #fdfdfd;
     border: 1px solid #ddd;
     border-radius: 18px;
@@ -94,13 +102,10 @@ section.main .score-reset-board .reset {
     padding: 0 6px;
     margin: 0 10px;
 
-    position: relative;
     float: right;
-    top: -25px;
-    transform: translate(-30% -30%);
 
-    
-
+    position: relative;
+    top: 7px;
     /* transition: all .2s ease; */
 }
 
@@ -110,14 +115,85 @@ section.main .score-reset-board .reset:hover {
 }
 
 section.main .game-result {
-    width: 700px;
-    height: 600px;
+    width: 100%;
+    height: 650px;
     background: #fff;
+
+}
+
+
+/* 하단부 주먹 가위 보 클릭시 가운데 플레이어 창에 크게 이미지 나타남 */
+section.main .game-result .player-game {
+
+    width: 45%;
+    height: 100%;
+    background: yellow;
+    float: left;
+    background: url("img/rock.png") center no-repeat;
+    background-size: contain;
+    margin: auto 2.5%;
+
+}
+
+/* 하단부 주먹 가위 보 클릭시 가운데 컴퓨터 창에 크게 이미지 나타남 */
+section.main .game-result .computer-game {
+    width: 45%;
+    height: 100%;
+    float: right;
+
+    margin: auto 2.5%;
+}
+
+section.main .game-result .rock {
+    background: url("img/rock.png") center no-repeat;
+    background-size: contain;
+}
+
+section.main .game-result .scissors {
+    background: url("img/scissors.png") center no-repeat;
+    background-size: contain;
+}
+
+section.main .game-result .paper {
+    background: url("img/paper.png") center no-repeat;
+    background-size: contain;
+}
+
+section.main .game-result .player-game p {
+    font-weight: 700;
+    font-size: 25px;
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
 }
 
 
 
-#rock, #scissors, #paper {
+section.main .game-result .computer-game p {
+    font-weight: 700;
+    font-size: 25px;
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+section.main .choice {
+    width: 100%;
+    float: left;
+    padding: 20px 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+
+#rock,
+#scissors,
+#paper {
     width: 80px;
     height: 80px;
     background: #aaa;
@@ -125,27 +201,37 @@ section.main .game-result {
     border: 1px solid #444;
     border-radius: 40px;
 
-    margin-right: 10px;
+    margin-right: 5%;
     cursor: pointer;
 
-    transition: all .1s ease;
+
+
+    /* transition: all .1s ease; */
+
 }
 
-#rock:hover, #scissors:hover, #paper:hover{
+#rock:hover,
+#scissors:hover,
+#paper:hover {
     background-size: 56px 56px;
 }
 
 #rock {
     background: url("img/rock.png") center no-repeat;
     background-size: 50px 50px;
+    float: left;
+    margin-left: 27%;
 }
 
 #scissors {
     background: url("img/scissors.png") center no-repeat;
     background-size: 50px 50px;
+    float: left;
+    margin-right: 27%;
 }
 
 #paper {
     background: url("img/paper.png") center no-repeat;
     background-size: 50px 50px;
+    float: left;
 }
