@@ -19,26 +19,34 @@
 <body>
     <div class="wrapper">
         <section class="main">
-            <h1 id="rock-paper-scissors">
-                가위! 바위! 보!
-            </h1>
-            <div class="result-reset">
-                <ul class="result">
-                    <!-- css로 you와 computer 이긴쪽 count 올려주기  -->
-                    <li class="win-user">0</li>
-                    <li>:</li>
-                    <li class="win-computer">0</li>
-                </ul>
-                <span class="reset">RESET</span>
+            <h1 id="rock-paper-scissors">가위! 바위! 보!</h1>
+            <div class="score-reset-board">
+                <div class="score">
+                    <div class="player-computer">플레이어 vs 컴퓨터</div>
+                    <div class="score-board"><em id="player-score">0</em> : <em id="computer-score">0</em></div>
+                </div>
+                <div class="reset">RESET</div>
             </div>
-            <ul class="game-status">
-                <li class="my-game"></li>
-                <li class="computer-game"></li>
-            </ul>
-            
+            <div class="game-result">
+                <div class="player-game">
 
+                </div>
+                <div class="computer-game">
 
+                </div>
+            </div>
 
+            <div class="choice">
+                <div id="rock">
+                    <img src="img/rock.png" />
+                </div>
+                <div id="paper">
+                    <img src="img/paper.png" />
+                </div>
+                <div id="scissor">
+                    <img src="img/scissors.png" />
+                </div>
+            </div>
 
         </section>
 
