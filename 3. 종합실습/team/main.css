@@ -104,7 +104,7 @@ section.main .score-reset-board .reset {
     /* transition: all .2s ease; */
 }
 
-.reset:hover {
+section.main .score-reset-board .reset:hover {
     background: #dec6eb;
     border: 1px solid #777;
 }
