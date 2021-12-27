@@ -67,7 +67,7 @@ section.main .score-reset-board .score {
 }
 
 section.main .score-reset-board .score .player-computer {
-    
+
 }
 
 section.main .score-reset-board .score .score-board {
@@ -116,8 +116,8 @@ section.main .game-result {
 }
 
 
-/*
-.rock, .scissors, .paper {
+
+#rock, #scissors, #paper {
     width: 80px;
     height: 80px;
     background: #aaa;
@@ -131,22 +131,21 @@ section.main .game-result {
     transition: all .1s ease;
 }
 
-.rock:hover, .scissors:hover, .paper:hover{
+#rock:hover, #scissors:hover, #paper:hover{
     background-size: 56px 56px;
 }
 
-.rock {
-    background: url("image/rock.png") center no-repeat;
+#rock {
+    background: url("img/rock.png") center no-repeat;
     background-size: 50px 50px;
 }
 
-.scissors {
-    background: url("image/scissors.png") center no-repeat;
+#scissors {
+    background: url("img/scissors.png") center no-repeat;
     background-size: 50px 50px;
 }
 
-.paper {
-    background: url("image/paper.png") center no-repeat;
+#paper {
+    background: url("img/paper.png") center no-repeat;
     background-size: 50px 50px;
 }
-*/
