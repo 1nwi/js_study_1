@@ -1,0 +1,22 @@
+{
+  "user": [
+    {
+      "account": "abc1234",
+      "password": "aaa1234!",
+      "userName": "고길동",
+      "address": "대전시 유성구"
+    },
+    {
+      "account": "def4321",
+      "password": "ddd4321!",
+      "userName": "박영희",
+      "address": "서울시 중구"
+    },
+    {
+      "account": "ggg4321",
+      "password": "ggg4321!",
+      "userName": "마이콜",
+      "address": "대전시 서구"
+    }
+  ]
+}
