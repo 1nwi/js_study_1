@@ -5,12 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        section.info {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        .info {
+            width: 60%;
+        }
+        .detail {
+            width: 30%;
+            border: 2px dashed gray;
+            color: #444;
+            font-weight: 700;
+            padding: 20px;
+        }
+
+
+    </style>
 </head>
 <body>
     
     <button id="load">서버에서 회원정보 불러오기</button>
 
-    <ul class="content"></ul>
+    <section class="info">
+        <ul class="content"></ul>
+
+        <div class="detail">
+            <div class="account">계정: <span class="acc"></span> </div>
+            <div class="name">이름: <span class="nm"></span> </div>
+            <div class="addr">주소: <span class="ad"></span> </div>
+        </div>
+    </section>
 
     <script>
 
@@ -33,12 +60,41 @@
 
             const $ul = document.querySelector('.content');
             for (let user of userList) {
-                const {account, userName, address} = user;
+                const {id, account, userName, address} = user;
                 const $li = document.createElement('li');
-                $li.textContent = `# 아이디: ${account}, 이름: ${userName}, 주소: ${address}`;
+                $li.innerHTML = `# 아이디: ${account}, 이름: <a class="detail-btn" data-id=${id} href="#"> ${userName}</a>, 주소: ${address}`;
 
                 $ul.appendChild($li);
             }
+
+            // 제목 링크 클릭 이벤트
+            $ul.addEventListener('click', e => {
+                if (!e.target.matches('.detail-btn')) return;
+                e.preventDefault(); // a태그 본래 기능 중단
+                console.log('제목링크 클릭됨!');
+
+                const xhr = new XMLHttpRequest();
+                const id = e.target.dataset.id;
+                xhr.open('GET', 'http://localhost:5000/user/' + id);
+                xhr.send();
+
+                xhr.onload = e => {
+                if (xhr.status === 200) {
+                    // console.log(xhr.response);
+                    const userObj = JSON.parse(xhr.response);
+                    // console.log(userObj);
+                    const {account, userName, address} = userObj;
+
+                    document.querySelector('.acc').textContent = account;
+                    document.querySelector('.nm').textContent = userName;
+                    document.querySelector('.ad').textContent = address;
+                   
+                } else {
+                    console.error('통신 실패!');
+                }
+            }
+            });
+
         }
 
         const $loadBtn = document.getElementById('load');
@@ -65,11 +121,12 @@
             // 4. 응답정보 확인
             xhr.onload = e => {
                 //응답 코드
-                console.log(xhr.status);
+                // console.log(xhr.status);
                 //응답 데이터 확인
                 // console.log(xhr.response);
 
                 if (xhr.status === 200) {
+                    // console.log(xhr.response);
                     makeResultDOM(xhr.response);
                 } else {
                     console.error('통신 실패!');

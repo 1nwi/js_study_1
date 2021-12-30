@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            display: block;
+        }
+
+        .content {
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <section class="main">
+        <h1>시험 점수 등록</h1>
+
+        <div class="register">
+            <label>
+                # 이름 : <input type="text" name="userName">
+            </label>
+            <label>
+                # 국어 : <input type="text" name="kor">
+            </label>
+            <label>
+                # 영어 : <input type="text" name="eng">
+            </label>
+            <label>
+                # 수학 : <input type="text" name="math">
+            </label>
+            <label>
+                <button type="button" id="insert">확인</button>
+            </label>
+        </div>
+
+        <ul class="content"></ul>
+    </section>
+        
+
+    <script>
+
+
+        const $insert = document.getElementById('insert');
+        $insert.onclick = e => {
+            e.preventDefault();
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('POST', 'http://192.168.1.91:8181/api/score');
+
+            const newData = {
+                name: document.querySelector('input[name=userName]').value,
+                kor: document.querySelector('input[name=kor]').value,
+                eng: document.querySelector('input[name=eng]').value,
+                math: document.querySelector('input[name=math]').value
+            }
+
+            const sendData = JSON.stringify(newData);
+
+            xhr.setRequestHeader('content-type','application/json');
+
+            xhr.send(sendData);
+            xhr.onload = e => {
+                console.log(xhr.status);
+            }
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://192.168.1.91:8181/api/score');
+        xhr.send();
+        xhr.onload = e => {
+            if(xhr.status === 200) {
+                makeResultDOM(xhr.response);
+            } else {
+                console.error('통신 실패!');
+            }
+        }
+        console.log(xhr.response);
+
+
+        function makeResultDOM(response) {
+            const userScore = JSON.parse(response);
+            console.log(userScore);
+
+            const $ul = document.querySelector('.content');
+            for (let user of userScore) {
+                const {stuNum, name, kor, Eng, math, total, average} = user;
+                const $li = document.createElement('li');
+                $li.innerHTML = `# 학번: ${stuNum}, 이름: ${name}, 국어: ${kor}점, 영어: ${Eng}점, 수학: ${math}, 총점: ${total}점, 평균: ${average}점`;
+                
+                $ul.appendChild($li);
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://192.168.1.91:8181/api/score')
+            xhr.send();
+            
+            
+            
+        }
+
+        // makeREsultDom(xhr.response);
+
+
+    </script>
+
+
+</body>
+</html>
