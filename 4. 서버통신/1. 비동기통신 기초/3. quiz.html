@@ -55,10 +55,10 @@
             xhr.open('POST', 'http://192.168.1.91:8181/api/score');
 
             const newData = {
-                name: document.querySelector('input[name=userName]').value,
-                kor: document.querySelector('input[name=kor]').value,
-                eng: document.querySelector('input[name=eng]').value,
-                math: document.querySelector('input[name=math]').value
+                name: +document.querySelector('input[name=userName]').value,
+                kor: +document.querySelector('input[name=kor]').value,
+                eng: +document.querySelector('input[name=eng]').value,
+                math: +document.querySelector('input[name=math]').value
             }
 
             const sendData = JSON.stringify(newData);
