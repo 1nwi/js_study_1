@@ -75,6 +75,25 @@
 
         // 함수 선언부
 
+        // 점수 삭제 요청
+        function deleteScoreData($target) {
+
+            const xhr = new XMLHttpRequest();
+            const stuNum = $target.dataset.stuNum;
+            console.log('학번: ' + stuNum);
+            xhr.open('DELETE', URL + '/' + stuNum);
+            xhr.send();
+
+            xhr.onload = e => {
+                if (xhr.status === 200) {
+                    removeAll();
+                    getList();
+                } else {
+                    alert('삭제 실패!');
+                }
+            };
+        }
+
         // 점수리스트 렌더링
         function makeScoreListDOM(resp) {
             const scoreList = JSON.parse(resp);
@@ -89,36 +108,23 @@
                 let tag = `
                     <li>
                         # 학번: ${stuNum}, 이름: ${name}, 국어: ${kor}점, 영어: ${eng}점, 수학: ${math}점, 총점: ${total}점, 평균: ${average}점
-                        <a class='del-btn' href='#'>삭제</a>
+                        <a data-stu-num='${stuNum}' class='del-btn' href='#'>삭제</a>
                     </li>
                 `;
                 $ul.innerHTML += tag;    
-
-            };
+            }; //for 문 내부
             // 삭제버튼 클릭이벤트
-            const $delBtn = document.querySelector('a.del-btn');
-            $delBtn.onclick = e => {
+            $ul.addEventListener('click', e => {
                 e.preventDefault();
-                
-                console.log($delBtn);
-                const xhr = new XMLHttpRequest();
-                    
-                
+                if (!e.target.matches('ul li .del-btn')) return;
+                // console.log('삭제 버튼 클릭!');
 
-                    
-                    // xhr.open('DELETE',URL);
-                    // xhr.send();
-                    // xhr.onload = e => {
-                    //     if(xhr.status === 200) {
-                    //         alert('삭제 성공!');
-                    //     } else {
-                    //         alert('삭제 실패!')}
-                    // };
+                deleteScoreData(e.target);
 
-            };
+            });
 
             
-        }
+        } // 함수 내부
 
         // 서버의 전체 성적정보 부르기
         function getList(){
@@ -212,6 +218,8 @@
                 validationCSS(flagNum);
                 // 서버 데이터 전송
                 sendScoreData();
+
+
             };
 
         })();
