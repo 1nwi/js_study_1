@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <img id="corver" src="" alt="표지이미지">
+
+    <script>
+        // 영화 API를 제공하는 서버주소 :
+        // http://yts.mx/api
+
+        fetch('https://yts.mx/api/v2/list_movies.json?limit=10&page=1&sort_by=rating')
+            .then(res => res.json())
+            .then(result => {
+                // 첫번쨰 영화의 제목 구하기
+                console.log(result.data.movies[0].title);
+                // 두번쨰 영화의 큰 표지 이미지 주소 구하기
+                console.log(result.data.movies[1].large_cover_image);
+
+                const $img = document.getElementById('corver');
+                $img.setAttribute('src', result.data.movies[1].large_cover_image);
+            });
+            
+    </script>
+
+</body>
+</html>

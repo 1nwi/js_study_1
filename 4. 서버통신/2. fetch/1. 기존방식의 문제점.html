@@ -39,6 +39,8 @@
             const hong = get('http://localhost:5000/user/1');
             console.log(`객체정보(함수밖): ${hong}`);
 
+            get('http://localhost:5000/board?userId=' + hong.id);
+            
         })();
 
     </script>
