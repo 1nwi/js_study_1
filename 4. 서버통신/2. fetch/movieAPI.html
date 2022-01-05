@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <style>
         * {
             margin: 0;
@@ -37,10 +37,10 @@
             width: 100%;
         }
         .movie-list .movie .inner {
-            padding: 15px 15px 15px 15px;
+            padding: 25px 15px;
         }
         .movie-list .movie .inner * {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: 700;
             margin-bottom: 5px;
         }
@@ -60,7 +60,6 @@
             display: flex;
             justify-content: space-between;
         }
-
         header h1 {
             flex: 1;
         }
@@ -74,12 +73,11 @@
             align-items: center;
         }
 
-
     </style>
 
 </head>
 <body>
-    
+
     <header>
         <h1>WhatSsa!!</h1>
         <nav class="gnb">
@@ -91,6 +89,7 @@
         </nav>
     </header>
 
+
     <div class="movie-list clearfix">
         <!-- <div class="movie">
             <div class="img-box">
@@ -101,112 +100,67 @@
                 <div class="year">개봉년도</div>
                 <div class="rating">평점</div>
             </div>
-        </div>-->
+        </div> -->
+        
+        
     </div>
+    
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 
-    <!-- Modal -->
-    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        </div>
-    </div>
+        //서버에서 받은 영화 정보를 렌더링하는 함수
+        function makeMovieListDOM(movies) {
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <script>
-
-        // 서버에서 받은 영화 정보를 렌더링하는 함수
-        function makeMobieListDOM(movies) {
-            console.log(movies);
-            let tag = ''; // 태그를 저장할 변수
+            let tag = ''; //태그를 저장할 변수
+            
             for (let mov of movies) {
                 const {large_cover_image, title, year, rating} = mov;
 
                 tag += `
                 <div class="movie">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#detailModal">
+                    <a href="#">
                         <div class="img-box">
                             <img src="${large_cover_image}" alt="표지사진">
                         </div>
                         <div class="inner">
-                            <div class="title">제목: ${title}</div>
-                            <div class="year">개봉년도: ${year}년</div>
-                            <div class="rating">평점: ${rating}점</div>
+                            <div class="title">${title}</div>
+                            <div class="year">${year}년</div>
+                            <div class="rating">${rating}점</div>
                         </div>
                     </a>    
                 </div>
                 `;
             } // end for
+
             document.querySelector('.movie-list').innerHTML = tag;
 
-            
         }
 
-        function getMovieData(sortCondition) {
 
-        // 영화 API를 제공하는 서버주소 :
-        // http://yts.mx/api
+        function getMovieData(sortCondition='rating') {
+
+            // 무료영화 API를 제공하는 서버주소: 
+            // http://yts.mx/api
+
             fetch(`https://yts.mx/api/v2/list_movies.json?limit=20&page=1&sort_by=${sortCondition}`)
                 .then(res => res.json())
                 .then(result => {
-                    // 첫번쨰 영화의 제목 구하기
-                    // console.log(result.data.movies[0].title);
-                    // 두번쨰 영화의 큰 표지 이미지 주소 구하기
-                    // console.log(result.data.movies[1].large_cover_image);
+                    // 첫번째 영화의 제목 구하기
+                    console.log(result.data.movies[0].title);
+                    // 두번째 영화의 큰 표지이미지 주소 구하기
+                    console.log(result.data.movies[1].large_cover_image);
 
-                    makeMobieListDOM(result.data.movies);
-                    movieInfo(result.data.movies);
+                    makeMovieListDOM(result.data.movies);                
                 });
         }
 
-
-        function movieInfo(movies) {
-            const $movie = document.querySelector('body .movie-list');
-            $movie.addEventListener('click', e => {
-                if (movies.title === e.target) {
-                    
-                }
-            });
-
-        }
-
-        // function movieInfo(movies) {
-        //     let info = '';
-        //     for (let mvinfo of movies) {
-                
-        //         const {medium_cover_image,title, runtime, summary} = mvinfo;
-        //         info += `
-        //         <img src="${medium_cover_image}" alt="표지사진">
-        //         <div class="infoTitle">제목: ${title}</div>
-        //         <div class="infoRuntime">런타임: ${runtime} 분</div>
-        //         <div class="infoSummary">줄거리: ${summary}</div>
-                
-        //         `;
-        //     }
-        //     document.querySelector('.modal-body').innerHTML = info;
-        // }
-        
 
         (function() {
 
             //초기 영화정보 로딩 (기본값: 평점순)
             getMovieData();
 
-            //정렬 클릭 이벤트
+            //정렬 클릭이벤트
             const $ul = document.querySelector('header .gnb ul');
             $ul.addEventListener('click', e => {
                 if (!e.target.matches('ul li a')) return;
@@ -220,20 +174,11 @@
                     getMovieData('year');
                 } else if (targetId === 's_like') {
                     getMovieData('like_count');
-                }  
-            });
-            
-            const $movie = document.querySelector('body .movie-list');
-            $movie.addEventListener('click', e => {
-                console.log(e.target);
-                if (!e.target.matches('.movie a')) return;
-                e.preventDefault();
-                movieInfo();
+                }
             });
 
         })();
 
     </script>
-
 </body>
 </html>
