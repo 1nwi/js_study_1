@@ -110,15 +110,17 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            ...
+            
+                <img class="desc-image" src="" alt="" style="width:200px;float: left; margin-right: 20px;">
+                <p class="movie-description"></p>
+
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         </div>
@@ -134,10 +136,11 @@
             console.log(movies);
             let tag = ''; // 태그를 저장할 변수
             for (let mov of movies) {
-                const {large_cover_image, title, year, rating} = mov;
+                const {id, large_cover_image, title, year, rating, summary} = mov;
 
                 tag += `
-                <div class="movie">
+                <div data-id=${id} class="movie">
+                    <div class="summary" style="display:none;">${summary}</div>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#detailModal">
                         <div class="img-box">
                             <img src="${large_cover_image}" alt="표지사진">
@@ -151,12 +154,37 @@
                 </div>
                 `;
             } // end for
-            document.querySelector('.movie-list').innerHTML = tag;
+            const $movieList = document.querySelector('.movie-list');
+            $movieList.innerHTML = tag;
 
+
+            //상세정보 클릭이벤트
+            $movieList.addEventListener('click', e => {
+                if (!e.target.matches('.movie-list .movie *')) return;
+                e.preventDefault();
+                
+                // closest(selector): 해당 요소부터 부모들을 탐색하여 일치하는 태그를 찾음
+                console.log(e.target.closest('.movie'));
+
+                makeMovieDetailDOM(e.target.closest('.movie'));
+            });
             
         }
 
-        function getMovieData(sortCondition) {
+        //서버에서 받은 영화 상세정보를 렌더링하는 함수
+        function makeMovieDetailDOM($movie) {
+            
+
+            const $modalTitle = document.querySelector('.modal-title');
+            const $summary = document.querySelector('.movie-description');
+            const $descImg = $summary.previousElementSibling;
+
+            $modalTitle.textContent = $movie.querySelector('.title').textContent;
+            $summary.textContent = $movie.firstElementChild.textContent;
+            $descImg.setAttribute('src', $movie.querySelector('.img-box img').getAttribute('src'));
+        }
+
+        function getMovieData(sortCondition='rating') {
 
         // 영화 API를 제공하는 서버주소 :
         // http://yts.mx/api
@@ -169,37 +197,8 @@
                     // console.log(result.data.movies[1].large_cover_image);
 
                     makeMobieListDOM(result.data.movies);
-                    movieInfo(result.data.movies);
                 });
         }
-
-
-        function movieInfo(movies) {
-            const $movie = document.querySelector('body .movie-list');
-            $movie.addEventListener('click', e => {
-                if (movies.title === e.target) {
-                    
-                }
-            });
-
-        }
-
-        // function movieInfo(movies) {
-        //     let info = '';
-        //     for (let mvinfo of movies) {
-                
-        //         const {medium_cover_image,title, runtime, summary} = mvinfo;
-        //         info += `
-        //         <img src="${medium_cover_image}" alt="표지사진">
-        //         <div class="infoTitle">제목: ${title}</div>
-        //         <div class="infoRuntime">런타임: ${runtime} 분</div>
-        //         <div class="infoSummary">줄거리: ${summary}</div>
-                
-        //         `;
-        //     }
-        //     document.querySelector('.modal-body').innerHTML = info;
-        // }
-        
 
         (function() {
 
@@ -221,14 +220,6 @@
                 } else if (targetId === 's_like') {
                     getMovieData('like_count');
                 }  
-            });
-            
-            const $movie = document.querySelector('body .movie-list');
-            $movie.addEventListener('click', e => {
-                console.log(e.target);
-                if (!e.target.matches('.movie a')) return;
-                e.preventDefault();
-                movieInfo();
             });
 
         })();
