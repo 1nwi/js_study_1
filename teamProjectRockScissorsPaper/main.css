@@ -270,7 +270,22 @@ section.main .choice {
 }
 
  /* 아이폰 12pro 해상도 */
-@media screen and (max-width: 460px) {}
+@media screen and (max-width: 460px) {
+    .wrapper {
+        background: hotpink;
+        padding-top: 5px;
+        height: 500px;
+    }
+
+    section.main {
+        width: 350px;
+        height: 700px;
+    }
+    #rock-paper-scissors {
+        height: 50px;
+    }
+
+}
 
 
 
